@@ -12,8 +12,110 @@
       },
       "original": {
         "owner": "devkitPro",
+        "ref": "devkitARM_r67",
         "repo": "buildscripts",
-        "rev": "1d87636f62716a8866e5ce557cba5c3fa0f43329",
+        "type": "github"
+      }
+    },
+    "citro3d-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1698523618,
+        "narHash": "sha256-8yUkBz0osMujjaz9NB8M9iFXEyqa+ElcFbVeEKmuDvo=",
+        "owner": "devkitPro",
+        "repo": "citro3d",
+        "rev": "9f21cf7b380ce6f9e01a0420f19f0763e5443ca7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "devkitPro",
+        "ref": "v1.7.1",
+        "repo": "citro3d",
+        "type": "github"
+      }
+    },
+    "devkitarm-crtls-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1746212162,
+        "narHash": "sha256-3QOOUYQT/IJLMYRqc1yAUR26PMnh/R3mD5TdMG3wTCQ=",
+        "owner": "devkitPro",
+        "repo": "devkitarm-crtls",
+        "rev": "1c0c10257c44bbb5a433453bb6bba91582825492",
+        "type": "github"
+      },
+      "original": {
+        "owner": "devkitPro",
+        "ref": "v1.2.7",
+        "repo": "devkitarm-crtls",
+        "type": "github"
+      }
+    },
+    "devkitarm-rules-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1746227735,
+        "narHash": "sha256-Xwnnx7SbXQcUbH/neBmMspnZQsQTFKaGqE8tXvbfWDU=",
+        "owner": "devkitPro",
+        "repo": "devkitarm-rules",
+        "rev": "51d6f3a928e1c6486afaea114e28093c025feeeb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "devkitPro",
+        "ref": "v1.6.1",
+        "repo": "devkitarm-rules",
+        "type": "github"
+      }
+    },
+    "dslink-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1725284691,
+        "narHash": "sha256-0muL/vxYn4C9WlGgfsWO7hVsdCC2L5mtpdVvUaOK7f0=",
+        "owner": "devkitPro",
+        "repo": "3dslink",
+        "rev": "c2df7362a156282bc2fb55370740ad670ca5a8a5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "devkitPro",
+        "ref": "v0.6.3",
+        "repo": "3dslink",
+        "type": "github"
+      }
+    },
+    "general-tools-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1684694790,
+        "narHash": "sha256-clt7IzFg4QOAgqhYiFqI9kD+Z4XOBGCEHgCQBiOtXuQ=",
+        "owner": "devkitPro",
+        "repo": "general-tools",
+        "rev": "46086605cdc63fb02ba0ed08cdc00801ba00c6f0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "devkitPro",
+        "ref": "v1.4.4",
+        "repo": "general-tools",
+        "type": "github"
+      }
+    },
+    "libctru-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767195106,
+        "narHash": "sha256-2FnjibA4qlmwzHjJxAixpPTdpuJWmhrI84N3gTSrE5o=",
+        "owner": "devkitPro",
+        "repo": "libctru",
+        "rev": "36fe1ada5b7ebe53ba4decda36d764a55f8fefb6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "devkitPro",
+        "ref": "v2.7.0",
+        "repo": "libctru",
         "type": "github"
       }
     },
@@ -33,10 +135,52 @@
         "type": "github"
       }
     },
+    "picasso-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1663343614,
+        "narHash": "sha256-njnjutgcNekhvIPBDzBxGxvugEzxt/dkfon/dTCAH5c=",
+        "owner": "devkitPro",
+        "repo": "picasso",
+        "rev": "82cf7d95fe904bab54a69c723a9e21a06677f290",
+        "type": "github"
+      },
+      "original": {
+        "owner": "devkitPro",
+        "repo": "picasso",
+        "rev": "82cf7d95fe904bab54a69c723a9e21a06677f290",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "buildscripts": "buildscripts",
-        "nixpkgs": "nixpkgs"
+        "citro3d-src": "citro3d-src",
+        "devkitarm-crtls-src": "devkitarm-crtls-src",
+        "devkitarm-rules-src": "devkitarm-rules-src",
+        "dslink-src": "dslink-src",
+        "general-tools-src": "general-tools-src",
+        "libctru-src": "libctru-src",
+        "nixpkgs": "nixpkgs",
+        "picasso-src": "picasso-src",
+        "tools-3ds-src": "tools-3ds-src"
+      }
+    },
+    "tools-3ds-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1700262280,
+        "narHash": "sha256-2JVtsyFi42sEEZf13Ei+tuLSD4u58IO3xj4bMZtq3zM=",
+        "owner": "devkitPro",
+        "repo": "3dstools",
+        "rev": "718d6f2330dbef9dd5726573392425dcbd451677",
+        "type": "github"
+      },
+      "original": {
+        "owner": "devkitPro",
+        "ref": "v1.3.1",
+        "repo": "3dstools",
+        "type": "github"
       }
     }
   },
