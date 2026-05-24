@@ -3,6 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    crane.url = "github:ipetkov/crane";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     buildscripts = {
       url = "github:devkitPro/buildscripts/devkitARM_r67";
       flake = false;
@@ -41,39 +48,102 @@
     };
   };
 
-  outputs = { self, nixpkgs, buildscripts, devkitarm-rules-src, devkitarm-crtls-src, libctru-src, tools-3ds-src, general-tools-src, dslink-src, picasso-src, citro3d-src }:
-  let
-    pkgs = import nixpkgs { system = "x86_64-linux"; };
+  outputs =
+    {
+      self,
+      nixpkgs,
+      crane,
+      rust-overlay,
+      buildscripts,
+      devkitarm-rules-src,
+      devkitarm-crtls-src,
+      libctru-src,
+      tools-3ds-src,
+      general-tools-src,
+      dslink-src,
+      picasso-src,
+      citro3d-src,
+    }:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ rust-overlay.overlays.default ];
+      };
 
-    devkitARM = pkgs.callPackage ./pkgs/devkitARM.nix { inherit buildscripts devkitarm-rules-src devkitarm-crtls-src; };
+      rustToolchain = pkgs.rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
+      craneLib = (crane.mkLib pkgs).overrideToolchain (_: rustToolchain);
 
-    tools-3ds = pkgs.callPackage ./pkgs/3dstools.nix { inherit tools-3ds-src; };
-    picasso = pkgs.callPackage ./pkgs/picasso.nix { inherit picasso-src; };
-    dslink = pkgs.callPackage ./pkgs/3dslink.nix { inherit dslink-src; };
-    general-tools = pkgs.callPackage ./pkgs/general-tools.nix { inherit general-tools-src; };
-    libctru = pkgs.callPackage ./pkgs/libctru.nix { inherit libctru-src devkitARM tools-3ds general-tools; };
-    citro3d = pkgs.callPackage ./pkgs/citro3d.nix { inherit citro3d-src devkitARM libctru tools-3ds general-tools; };
+      devkitARM = pkgs.callPackage ./pkgs/devkitARM.nix {
+        inherit buildscripts devkitarm-rules-src devkitarm-crtls-src;
+      };
 
-    # Merge libctru and citro3d into a single libctru prefix
-    libctru-full = pkgs.symlinkJoin {
-      name = "libctru-full";
-      paths = [ libctru citro3d ];
-    };
+      tools-3ds = pkgs.callPackage ./pkgs/3dstools.nix { inherit tools-3ds-src; };
+      picasso = pkgs.callPackage ./pkgs/picasso.nix { inherit picasso-src; };
+      dslink = pkgs.callPackage ./pkgs/3dslink.nix { inherit dslink-src; };
+      general-tools = pkgs.callPackage ./pkgs/general-tools.nix { inherit general-tools-src; };
+      libctru = pkgs.callPackage ./pkgs/libctru.nix {
+        inherit
+          libctru-src
+          devkitARM
+          tools-3ds
+          general-tools
+          ;
+      };
+      citro3d = pkgs.callPackage ./pkgs/citro3d.nix {
+        inherit
+          citro3d-src
+          devkitARM
+          libctru
+          tools-3ds
+          general-tools
+          ;
+      };
 
-    # DEVKITPRO must be a directory with devkitARM/ and libctru/ inside it
-    devkitpro = pkgs.runCommand "devkitpro" { } ''
-      mkdir -p $out
-      ln -s ${devkitARM} $out/devkitARM
-      ln -s ${libctru-full} $out/libctru
-    '';
-  in
-  {
-    devShells.x86_64-linux.default = pkgs.mkShell {
+      # Merge libctru and citro3d into a single libctru prefix
+      libctru-full = pkgs.symlinkJoin {
+        name = "libctru-full";
+        paths = [
+          libctru
+          citro3d
+        ];
+      };
+
+      # DEVKITPRO must be a directory with devkitARM/ and libctru/ inside it
+      devkitpro = pkgs.runCommand "devkitpro" { } ''
+        mkdir -p $out
+        ln -s ${devkitARM} $out/devkitARM
+        ln -s ${libctru-full} $out/libctru
+      '';
+
+      dev-packages = [
+        devkitARM
+        tools-3ds
+        general-tools
+        dslink
+        picasso
+      ];
       DEVKITPRO = "${devkitpro}";
       DEVKITARM = "${devkitpro}/devkitARM";
       CTRULIB = "${devkitpro}/libctru";
+    in
+    {
+      devShells.${system} = {
+        basic = pkgs.mkShell {
+          name = "3ds-dev";
+          inherit DEVKITPRO DEVKITARM CTRULIB;
 
-      packages = [ devkitARM tools-3ds general-tools dslink picasso ];
+          packages = dev-packages;
+        };
+
+        rust = craneLib.devShell {
+          name = "rust3ds-dev";
+          inherit DEVKITPRO DEVKITARM CTRULIB;
+
+          packages = dev-packages ++ [ pkgs.cargo-3ds ];
+        };
+      };
+
+      formatter.${system} = pkgs.nixfmt-tree;
     };
-  };
 }

@@ -1,4 +1,17 @@
-{ lib, stdenv, fetchurl, buildscripts, devkitarm-rules-src, devkitarm-crtls-src, gmp, mpfr, libmpc, isl, zlib, texinfo }:
+{
+  lib,
+  stdenv,
+  fetchurl,
+  buildscripts,
+  devkitarm-rules-src,
+  devkitarm-crtls-src,
+  gmp,
+  mpfr,
+  libmpc,
+  isl,
+  zlib,
+  texinfo,
+}:
 
 let
   target = "arm-none-eabi";
@@ -31,7 +44,13 @@ stdenv.mkDerivation {
   hardeningDisable = [ "format" ];
 
   nativeBuildInputs = [ texinfo ];
-  buildInputs = [ gmp mpfr libmpc isl zlib ];
+  buildInputs = [
+    gmp
+    mpfr
+    libmpc
+    isl
+    zlib
+  ];
 
   buildPhase = ''
     # -------------------------------------------------------------------------

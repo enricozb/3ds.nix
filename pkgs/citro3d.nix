@@ -1,4 +1,11 @@
-{ stdenv, citro3d-src, devkitARM, libctru, tools-3ds, general-tools }:
+{
+  stdenv,
+  citro3d-src,
+  devkitARM,
+  libctru,
+  tools-3ds,
+  general-tools,
+}:
 
 stdenv.mkDerivation {
   pname = "citro3d";
@@ -6,7 +13,11 @@ stdenv.mkDerivation {
 
   src = citro3d-src;
 
-  nativeBuildInputs = [ devkitARM tools-3ds general-tools ];
+  nativeBuildInputs = [
+    devkitARM
+    tools-3ds
+    general-tools
+  ];
 
   preBuild = ''
     export DEVKITPRO=$(mktemp -d)

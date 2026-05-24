@@ -34,6 +34,21 @@
         "type": "github"
       }
     },
+    "crane": {
+      "locked": {
+        "lastModified": 1779130139,
+        "narHash": "sha256-BLrtr42azquO7MdGFU5a7KiMl3YpFlTeIXqy1fT5GlQ=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "edb38893982a3338972bb4a2ec7ce7c29ba10fd9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "devkitarm-crtls-src": {
       "flake": false,
       "locked": {
@@ -156,6 +171,7 @@
       "inputs": {
         "buildscripts": "buildscripts",
         "citro3d-src": "citro3d-src",
+        "crane": "crane",
         "devkitarm-crtls-src": "devkitarm-crtls-src",
         "devkitarm-rules-src": "devkitarm-rules-src",
         "dslink-src": "dslink-src",
@@ -163,7 +179,28 @@
         "libctru-src": "libctru-src",
         "nixpkgs": "nixpkgs",
         "picasso-src": "picasso-src",
+        "rust-overlay": "rust-overlay",
         "tools-3ds-src": "tools-3ds-src"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779592685,
+        "narHash": "sha256-p9d56GezhHRf4QfANxwa1d+fvwShvjB5XUhdIl7WEd0=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "3a58b199e7c83a80b85c28044f808085ba7e941c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "tools-3ds-src": {

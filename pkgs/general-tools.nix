@@ -1,4 +1,8 @@
-{ stdenv, general-tools-src, autoreconfHook }:
+{
+  stdenv,
+  general-tools-src,
+  autoreconfHook,
+}:
 
 stdenv.mkDerivation {
   pname = "general-tools";

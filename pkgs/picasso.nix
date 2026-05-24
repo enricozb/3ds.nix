@@ -1,4 +1,8 @@
-{ stdenv, picasso-src, autoreconfHook }:
+{
+  stdenv,
+  picasso-src,
+  autoreconfHook,
+}:
 
 stdenv.mkDerivation {
   pname = "picasso";

@@ -1,4 +1,8 @@
-{ stdenv, tools-3ds-src, autoreconfHook }:
+{
+  stdenv,
+  tools-3ds-src,
+  autoreconfHook,
+}:
 
 stdenv.mkDerivation {
   pname = "3dstools";

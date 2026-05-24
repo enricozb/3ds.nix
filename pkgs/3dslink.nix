@@ -1,4 +1,10 @@
-{ stdenv, dslink-src, autoreconfHook, pkg-config, zlib }:
+{
+  stdenv,
+  dslink-src,
+  autoreconfHook,
+  pkg-config,
+  zlib,
+}:
 
 stdenv.mkDerivation {
   pname = "3dslink";
@@ -6,7 +12,10 @@ stdenv.mkDerivation {
 
   src = "${dslink-src}/host";
 
-  nativeBuildInputs = [ autoreconfHook pkg-config ];
+  nativeBuildInputs = [
+    autoreconfHook
+    pkg-config
+  ];
   buildInputs = [ zlib ];
 
   meta = {

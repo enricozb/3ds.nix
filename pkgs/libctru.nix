@@ -1,4 +1,10 @@
-{ stdenv, libctru-src, devkitARM, tools-3ds, general-tools }:
+{
+  stdenv,
+  libctru-src,
+  devkitARM,
+  tools-3ds,
+  general-tools,
+}:
 
 stdenv.mkDerivation {
   pname = "libctru";
@@ -6,7 +12,11 @@ stdenv.mkDerivation {
 
   src = "${libctru-src}/libctru";
 
-  nativeBuildInputs = [ devkitARM tools-3ds general-tools ];
+  nativeBuildInputs = [
+    devkitARM
+    tools-3ds
+    general-tools
+  ];
 
   preBuild = ''
     # base_rules does `include $(DEVKITPRO)/devkitARM/base_tools`, so construct
