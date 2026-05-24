@@ -17,6 +17,23 @@
         "type": "github"
       }
     },
+    "citro2d-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737914326,
+        "narHash": "sha256-LEZwA4O5g2GV6JknipJgvHWllEeqZmRsByRJ7Gpr0PM=",
+        "owner": "devkitPro",
+        "repo": "citro2d",
+        "rev": "147b02aae021da61b1f620446ad2892ecc45411e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "devkitPro",
+        "ref": "v1.7.0",
+        "repo": "citro2d",
+        "type": "github"
+      }
+    },
     "citro3d-src": {
       "flake": false,
       "locked": {
@@ -80,6 +97,23 @@
         "owner": "devkitPro",
         "ref": "v1.6.1",
         "repo": "devkitarm-rules",
+        "type": "github"
+      }
+    },
+    "dkp-pacman-packages": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1778408351,
+        "narHash": "sha256-dVShcozMWnKyrWU6PbcROuE4SIhd4tKah7ArRfQxCBc=",
+        "owner": "devkitPro",
+        "repo": "pacman-packages",
+        "rev": "e7929f40084802426f8b5fa202e0b65e2317014c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "devkitPro",
+        "repo": "pacman-packages",
+        "rev": "e7929f40084802426f8b5fa202e0b65e2317014c",
         "type": "github"
       }
     },
@@ -170,10 +204,12 @@
     "root": {
       "inputs": {
         "buildscripts": "buildscripts",
+        "citro2d-src": "citro2d-src",
         "citro3d-src": "citro3d-src",
         "crane": "crane",
         "devkitarm-crtls-src": "devkitarm-crtls-src",
         "devkitarm-rules-src": "devkitarm-rules-src",
+        "dkp-pacman-packages": "dkp-pacman-packages",
         "dslink-src": "dslink-src",
         "general-tools-src": "general-tools-src",
         "libctru-src": "libctru-src",
