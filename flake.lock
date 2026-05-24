@@ -1,0 +1,45 @@
+{
+  "nodes": {
+    "buildscripts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767703124,
+        "narHash": "sha256-jVR/lcZNcnQ61r71f+3bOeyw1RrCuUXQDHxxdQkYZ2E=",
+        "owner": "devkitPro",
+        "repo": "buildscripts",
+        "rev": "1d87636f62716a8866e5ce557cba5c3fa0f43329",
+        "type": "github"
+      },
+      "original": {
+        "owner": "devkitPro",
+        "repo": "buildscripts",
+        "rev": "1d87636f62716a8866e5ce557cba5c3fa0f43329",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1779508470,
+        "narHash": "sha256-Ap9KJX+5xHIn3bPIpfNgT6MEXdAECECwo4/rmlQD74M=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "29916453413845e54a65b8a1cf996842300cd299",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "buildscripts": "buildscripts",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
