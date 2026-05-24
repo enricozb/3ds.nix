@@ -196,8 +196,8 @@
       },
       "original": {
         "owner": "devkitPro",
+        "ref": "v2.7.1",
         "repo": "picasso",
-        "rev": "82cf7d95fe904bab54a69c723a9e21a06677f290",
         "type": "github"
       }
     },

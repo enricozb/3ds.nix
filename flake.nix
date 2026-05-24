@@ -47,7 +47,7 @@
       flake = false;
     };
     picasso-src = {
-      url = "github:devkitPro/picasso/82cf7d95fe904bab54a69c723a9e21a06677f290";
+      url = "github:devkitPro/picasso/v2.7.1";
       flake = false;
     };
     dkp-pacman-packages = {
