@@ -116,7 +116,10 @@
       # libctru + citro3d merged — needed as DEVKITPRO/libctru for citro2d build
       libctru-merged = pkgs.symlinkJoin {
         name = "libctru-merged";
-        paths = [ libctru citro3d ];
+        paths = [
+          libctru
+          citro3d
+        ];
       };
 
       citro2d = pkgs.callPackage ./pkgs/citro2d.nix {
