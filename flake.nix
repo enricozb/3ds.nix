@@ -140,7 +140,13 @@
           name = "rust3ds-dev";
           inherit DEVKITPRO DEVKITARM CTRULIB;
 
-          packages = dev-packages ++ [ pkgs.cargo-3ds ];
+          LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
+
+          packages = dev-packages ++ [
+            pkgs.cargo-3ds
+            pkgs.llvmPackages.libclang
+            pkgs.llvmPackages.clang
+          ];
         };
       };
 
