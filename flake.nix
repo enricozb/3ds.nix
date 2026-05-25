@@ -176,33 +176,34 @@
         general-tools
         dslink
         picasso
+
+        pkgs.llvmPackages.libclang
+        pkgs.llvmPackages.clang
       ];
-      DEVKITPRO = "${devkitpro}";
-      DEVKITARM = "${devkitpro}/devkitARM";
-      CTRULIB = "${devkitpro}/libctru";
+      rust-dev-packages = dev-packages ++ [
+        pkgs.cargo-3ds
+      ];
+      env = {
+        DEVKITPRO = "${devkitpro}";
+        DEVKITARM = "${devkitpro}/devkitARM";
+        CTRULIB = "${devkitpro}/libctru";
+        LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
+      };
     in
     {
-      devShells.${system} = {
-        default = pkgs.mkShell {
-          name = "3ds-dev";
-          inherit DEVKITPRO DEVKITARM CTRULIB;
+      mkShell.${system} =
+        shell@{
+          packages ? [ ],
+          ...
+        }:
+        pkgs.mkShell (env // shell // { packages = dev-packages ++ packages; });
 
-          packages = dev-packages;
-        };
-
-        rust = craneLib.devShell {
-          name = "rust3ds-dev";
-          inherit DEVKITPRO DEVKITARM CTRULIB;
-
-          LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
-
-          packages = dev-packages ++ [
-            pkgs.cargo-3ds
-            pkgs.llvmPackages.libclang
-            pkgs.llvmPackages.clang
-          ];
-        };
-      };
+      mkRustShell.${system} =
+        shell@{
+          packages ? [ ],
+          ...
+        }:
+        craneLib.devShell (env // shell // { packages = rust-dev-packages ++ packages; });
 
       formatter.${system} = pkgs.nixfmt-tree;
     };
