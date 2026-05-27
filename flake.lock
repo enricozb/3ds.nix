@@ -216,6 +216,7 @@
         "nixpkgs": "nixpkgs",
         "picasso-src": "picasso-src",
         "rust-overlay": "rust-overlay",
+        "tex3ds-src": "tex3ds-src",
         "tools-3ds-src": "tools-3ds-src"
       }
     },
@@ -236,6 +237,23 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "tex3ds-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1660594080,
+        "narHash": "sha256-hb8nncZ3AwJq6oDyvas9d9rw0RHPth1q1Chqqd8gwf4=",
+        "owner": "devkitPro",
+        "repo": "tex3ds",
+        "rev": "37220c696e873812df41af62d1db0b20c66661fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "devkitPro",
+        "ref": "v2.3.0",
+        "repo": "tex3ds",
         "type": "github"
       }
     },

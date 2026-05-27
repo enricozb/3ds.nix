@@ -50,6 +50,10 @@
       url = "github:devkitPro/picasso/v2.7.1";
       flake = false;
     };
+    tex3ds-src = {
+      url = "github:devkitPro/tex3ds/v2.3.0";
+      flake = false;
+    };
     dkp-pacman-packages = {
       # devkitPro cmake toolchain files (devkitarm-cmake, 3ds-cmake, dkp-cmake-common-utils)
       url = "github:devkitPro/pacman-packages/e7929f40084802426f8b5fa202e0b65e2317014c";
@@ -71,6 +75,7 @@
       general-tools-src,
       dslink-src,
       picasso-src,
+      tex3ds-src,
       citro3d-src,
       citro2d-src,
       dkp-pacman-packages,
@@ -91,6 +96,7 @@
 
       tools-3ds = pkgs.callPackage ./pkgs/3dstools.nix { inherit tools-3ds-src; };
       picasso = pkgs.callPackage ./pkgs/picasso.nix { inherit picasso-src; };
+      tex3ds = pkgs.callPackage ./pkgs/tex3ds.nix { inherit tex3ds-src; };
       dslink = pkgs.callPackage ./pkgs/3dslink.nix { inherit dslink-src; };
       general-tools = pkgs.callPackage ./pkgs/general-tools.nix { inherit general-tools-src; };
       libctru = pkgs.callPackage ./pkgs/libctru.nix {
@@ -176,6 +182,7 @@
         general-tools
         dslink
         picasso
+        tex3ds
 
         pkgs.llvmPackages.libclang
         pkgs.llvmPackages.clang
