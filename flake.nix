@@ -87,9 +87,6 @@
         overlays = [ rust-overlay.overlays.default ];
       };
 
-      rustToolchain = pkgs.rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
-      craneLib = (crane.mkLib pkgs).overrideToolchain (_: rustToolchain);
-
       devkitARM = pkgs.callPackage ./pkgs/devkitARM.nix {
         inherit buildscripts devkitarm-rules-src devkitarm-crtls-src;
       };
@@ -208,8 +205,13 @@
       mkRustShell.${system} =
         shell@{
           packages ? [ ],
+          rustToolchainFile ? ./rust-toolchain.toml,
           ...
         }:
+        let
+          rustToolchain = pkgs.rust-bin.fromRustupToolchainFile rustToolchainFile;
+          craneLib = (crane.mkLib pkgs).overrideToolchain (_: rustToolchain);
+        in
         craneLib.devShell (env // shell // { packages = rust-dev-packages ++ packages; });
 
       formatter.${system} = pkgs.nixfmt-tree;
